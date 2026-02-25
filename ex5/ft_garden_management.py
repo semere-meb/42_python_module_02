@@ -19,7 +19,7 @@ class GardenManager:
             sunlight_hours: int,
         ) -> None:
             if name == "":
-                raise Exception("Error adding plant: Plant name cannot be "
+                raise  GardenManager.GardenException("Error adding plant: Plant name cannot be "
                                 + "empty!")
             self.name = name
             self.water_level = water_level
@@ -29,19 +29,19 @@ class GardenManager:
 
         def water_plant(self, tank_level: int) -> int:
             if tank_level < self.water_consumption:
-                raise Exception(f"Not enough water in tank for {self.name}")
+                raise GardenManager.GardenException(f"Not enough water in tank for {self.name}")
             print(f"Watering {self.name} - success")
             return tank_level - self.water_consumption
 
         def check_health(self) -> None:
             if not 1 <= self.water_level <= 10:
-                raise Exception(
+                raise GardenManager.GardenException(
                     f"Error checking {self.name}: "
                     + f"Water level {self.water_level} is too "
                     + f"{'high' if self.water_level > 10 else 'low'} (1 - 10)"
                 )
             if not 2 <= self.sunlight_hours <= 12:
-                raise Exception(
+                raise GardenManager.GardenException(
                     f"Error checking {self.name}: "
                     + f"Sunlight hours {self.sunlight_hours} is too "
                     + f"{'high' if self.sunlight_hours > 12 else 'low'}"
@@ -69,7 +69,7 @@ class GardenManager:
 
     def check_tank_level(self) -> None:
         if self.tank_level < 10:
-            raise Exception("GardenError: Not enough water in tank")
+            raise self.GardenException("GardenError: Not enough water in tank")
 
 
 def test_garden_management() -> None:
@@ -85,13 +85,13 @@ def test_garden_management() -> None:
     try:
         for plant in plants:
             garden_mgr.add_plant(*plant)
-    except Exception as e:
+    except GardenManager.GardenException as e:
         print(e)
 
     print("\nWatering plants..")
     try:
         garden_mgr.water_plants()
-    except Exception as e:
+    except GardenManager.GardenException as e:
         print(e)
     finally:
         print("Closing watering system (cleanup)")
@@ -99,7 +99,7 @@ def test_garden_management() -> None:
     print("\nChecking plant health...")
     try:
         garden_mgr.check_plant_health()
-    except Exception as e:
+    except GardenManager.GardenException as e:
         print(e)
     finally:
         print("Stopping health checks")
@@ -107,8 +107,8 @@ def test_garden_management() -> None:
     print("\nTesting error recovery...")
     try:
         garden_mgr.check_tank_level()
-    except Exception:
-        print("Caught Garden Error: Not enough water in tank")
+    except GardenManager.GardenException:
+        print("Caught GardenError: Not enough water in tank")
     finally:
         print("System recovered and continuing...")
 
