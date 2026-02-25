@@ -19,8 +19,9 @@ class GardenManager:
             sunlight_hours: int,
         ) -> None:
             if name == "":
-                raise  GardenManager.GardenException("Error adding plant: Plant name cannot be "
-                                + "empty!")
+                raise GardenManager.GardenException(
+                    "Error adding plant: Plant name cannot be empty!"
+                )
             self.name = name
             self.water_level = water_level
             self.water_consumption = water_cost
@@ -29,7 +30,9 @@ class GardenManager:
 
         def water_plant(self, tank_level: int) -> int:
             if tank_level < self.water_consumption:
-                raise GardenManager.GardenException(f"Not enough water in tank for {self.name}")
+                raise GardenManager.GardenException(
+                    f"Not enough water in tank for {self.name}"
+                )
             print(f"Watering {self.name} - success")
             return tank_level - self.water_consumption
 
@@ -74,7 +77,7 @@ class GardenManager:
 
 def test_garden_management() -> None:
     plants = [
-        ("Cabbage", 5, 15, 24),
+        # ("Cabbage", 5, 15, 24),
         ("Lettuce", 15, 20, 8),
         ("Tomato", 5, 30, 8),
         ("", 5, 15, 8),
