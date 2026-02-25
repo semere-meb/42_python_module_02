@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 class PlantError(Exception):
     pass
 

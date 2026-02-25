@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 def check_temperature(temp_str: str) -> int:
     temp_int = None
     try:

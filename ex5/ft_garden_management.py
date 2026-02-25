@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 class GardenManager:
     def __init__(self, tank_level: int) -> None:
         self.tank_level = tank_level

@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 def garden_operations(name: str, t_str: str, t_max: int, f_name: str) -> int:
     plants = {"apple": "Vitamin A"}
 

@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 class Plant:
     def __init__(self, name: str, water_level: int, status: str) -> None:
         self.name = name
