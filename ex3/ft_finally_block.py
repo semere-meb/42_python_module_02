@@ -34,7 +34,7 @@ def water_plants(plant_list: list) -> None:
         print("Watering completed successfully!")
 
 
-if __name__ == "__main__":
+def test_plant_checks():
     print("=== Garden watering system ===")
 
     plants: list = [
@@ -50,3 +50,7 @@ if __name__ == "__main__":
     water_plants([Plant("tomato"), Plant(None)])
 
     print("\nCleanup always happens, even with errors!")
+
+
+if __name__ == "__main__":
+    test_plant_checks()
