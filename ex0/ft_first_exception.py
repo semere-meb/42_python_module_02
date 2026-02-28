@@ -2,9 +2,8 @@
 
 
 def check_temperature(temp_str: str) -> int:
-    temp_int = None
     try:
-        temp_int = int(temp_str)
+        temp_int: int = int(temp_str)
         if temp_int > 40:
             print(f"Error: {temp_str}°C is too hot for plants (max 40°C)")
         elif temp_int < 0:
@@ -17,11 +16,24 @@ def check_temperature(temp_str: str) -> int:
 
 
 def test_temperature_input() -> None:
-    print("=== Garden Temperature Checker ===")
+    print("=== Garden Temperature Checker ===\n")
+
+    print("Testing temperature: 25")
     check_temperature("25")
+    print()
+
+    print("Testing temperature: abc")
     check_temperature("abc")
-    check_temperature("-2")
+    print()
+
+    print("Testing temperature: -50")
+    check_temperature("-50")
+    print()
+
+    print("Testing temperature: 100")
     check_temperature("100")
+    print()
+
     print("All tests completed - program didn't crash!")
 
 

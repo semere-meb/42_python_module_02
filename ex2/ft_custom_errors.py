@@ -9,26 +9,27 @@ class Plant:
 
 
 class GardenError(Exception):
-    def __init__(self, plants: list(Plant)) -> None:
-        self.plants = plants
+    msg: str
+
+    def __init__(self) -> None:
         self.msg = "Garden can't be empty"
 
 
 class PlantError(GardenError):
     def __init__(self, plant: Plant) -> None:
-        super().__init__([plant])
-        self.msg = f"The {self.plants[0].name} plant is wilting!"
+        super().__init__()
+        self.msg = f"The {plant.name} plant is wilting!"
 
 
 class WaterError(GardenError):
     def __init__(self, plant: Plant) -> None:
-        super().__init__([plant])
-        self.msg = f"Not enough water in the tank({self.plants[0].water_lev})!"
+        super().__init__()
+        self.msg = f"Not enough water in the tank({plant.water_level})!"
 
 
-def check_garden(plants: list(Plant)):
+def check_garden(plants: list):
     if plants == []:
-        raise GardenError(plants)
+        raise GardenError()
 
 
 def check_plant_status(plant: Plant) -> object:
@@ -63,6 +64,7 @@ def demo_func() -> None:
         try:
             check_plant_status(plant)
             check_plant_water_level(plant)
+            check_garden([p1, p2])
         except GardenError as e:
             print("Caught a garden error: " + e.msg)
     try:

@@ -59,10 +59,11 @@ class GardenManager:
         self, name: str, water_level: int, water_cost: int, sunlight_hours: int
     ) -> None:
         self.plants[:0] = [
-            self.Plant(name, water_level, water_cost, sunlight_hours)
+            self.Plant(name, water_level, water_cost, sunlight_hours),
         ]
 
     def water_plants(self) -> None:
+        print("Opening watering system")
         for plant in self.plants:
             self.tank_level = plant.water_plant(self.tank_level)
 
@@ -77,7 +78,6 @@ class GardenManager:
 
 def test_garden_management() -> None:
     plants = [
-        # ("Cabbage", 5, 15, 24),
         ("Lettuce", 15, 20, 8),
         ("Tomato", 5, 30, 8),
         ("", 5, 15, 8),
@@ -104,8 +104,8 @@ def test_garden_management() -> None:
         garden_mgr.check_plant_health()
     except GardenManager.GardenException as e:
         print(e)
-    finally:
-        print("Stopping health checks")
+    # finally:
+    #     print("Stopping health checks")
 
     print("\nTesting error recovery...")
     try:
